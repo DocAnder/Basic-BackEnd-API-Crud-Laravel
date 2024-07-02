@@ -60,9 +60,27 @@ class ProductController extends Controller
 
             $productFound->update($newProductData);
             return response()->json($productFound);
+        }        
+    }
+
+    public function destroy(Product $product){
+
+        try{
+
+            $product->delete();
+
+            return response()->json([
+                'status'=> true,
+                'product'=> $product, 
+                'message'=> 'Product deleted.'], 200);
+
+
+        }catch(Exception $th){
+            return response()->json([
+                'status'=> false,
+                'message'=> 'Unable to delete product.'], 400);
         }
 
-        
     }
 
 }
