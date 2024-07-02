@@ -9,9 +9,6 @@ use App\Models\Product;
 use App\Http\Services\ProductService;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
-//use App\Http\Requests\StoreProductRequest;
-//use Illuminate\Support\Facades\DB;
-//use Exception;
 
 class ProductController extends Controller
 {
@@ -120,35 +117,4 @@ class ProductController extends Controller
         }
 
     }
-
-
-
-   
-
-
-   
-
-
-    
-
-    // public function destroy(Product $product){
-
-    //     try{
-
-    //         $product->delete();
-
-    //         return response()->json([
-    //             'status'=> true,
-    //             'product'=> $product, 
-    //             'message'=> 'Product deleted.'], 200);
-
-
-    //     }catch(Exception $th){
-    //         return response()->json([
-    //             'status'=> false,
-    //             'message'=> 'Unable to delete product.'], 400);
-    //     }
-
-    // }
-
 }

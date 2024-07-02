@@ -20,9 +20,6 @@ class ProductRepository
     }
 
     public function update($productId, $data){
-        // $product = Product::findOrFail($productId);
-        // $product->update($data);
-        // return $product;
         $productFound = Product::find($productId);
         if($productFound){
             $product->update($data);
@@ -41,37 +38,4 @@ class ProductRepository
             return null;
         }
     }
-
-
-
-
-
-    // public function create(array $newProductData)
-    // {
-    //     return Product::create($newProductData);
-    // }
-
-    // public function update($productId, $newData)
-    // {
-    //     $product = Product::findOrFail($productId);
-    //     $product->update($data);
-    //     return $product;
-    // }
-
-
-    
-
-    // public function deleteProduct($productId)
-    // {
-    //     $product = Product::findOrFail($productId);
-
-    //     if ($product->photo) {
-    //         Storage::disk('public')->delete($product->photo);
-    //     }
-
-    //     $product->delete();
-
-    //     return $product;
-    // }
-
 }
