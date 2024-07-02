@@ -22,8 +22,8 @@ class ProductRepository
     public function update($productId, $data){
         $productFound = Product::find($productId);
         if($productFound){
-            $product->update($data);
-            return $product;
+            $productFound->update($data);
+            return $productFound;
         }else {
             return null;
         }
