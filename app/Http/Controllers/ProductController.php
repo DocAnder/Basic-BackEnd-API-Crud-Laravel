@@ -61,12 +61,11 @@ class ProductController extends Controller
             'price' => 'required|max:255',
             'image' => 'nullable',
         ]);
-
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $imagePath = $image->storeAs('images', $imageName, 'public');
-            $validated['image'] = $imagePath;
+        
+        if ($request->hasFile('image')) {            
+            $validated['image'] = $this->service->storeProductImage(
+                $request->file('image')
+            );
         }
 
         return response()->json($this->service->store($validated));

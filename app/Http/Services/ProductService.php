@@ -2,6 +2,7 @@
 
 namespace App\Http\Services;
 use App\Http\Repositories\ProductRepository;
+use Illuminate\Http\UploadedFile;
 
 class ProductService
 {
@@ -20,8 +21,13 @@ class ProductService
         return $this->repository->show($product);
     }
 
-    public function store(array $data){
+    public function store(array $data){       
         return $this->repository->store($data);
+    }
+
+    public function storeProductImage(UploadedFile $image) {
+        $imageName = $image->getClientOriginalName();
+        return $image->storeAs('images', $imageName, 'public');
     }
 
     public function update(array $data, $productId){
