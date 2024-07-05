@@ -3,6 +3,7 @@
 namespace App\Http\Services;
 use App\Http\Repositories\ProductRepository;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 class ProductService
 {
@@ -17,8 +18,13 @@ class ProductService
         return $this->repository->index();
     }
 
-    public function show($product){
-        return $this->repository->show($product);
+    public function show($product){        
+        $productFound = $this->repository->show($product);                
+        if($productFound->image){                        
+            $imageUrl = Storage::url($productFound->image);
+            $productFound->image = url($imageUrl);
+        }
+        return $productFound;
     }
 
     public function store(array $data){       
