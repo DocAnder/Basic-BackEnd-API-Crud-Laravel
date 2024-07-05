@@ -4,6 +4,7 @@ namespace App\Http\Services;
 use App\Http\Repositories\ProductRepository;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 
 class ProductService
 {
@@ -36,7 +37,7 @@ class ProductService
         return $image->storeAs('images', $imageName, 'public');
     }
 
-    public function update(array $data, $productId){
+    public function update(array $data, $productId){               
         return $this->repository->update($productId, $data);
     }
 

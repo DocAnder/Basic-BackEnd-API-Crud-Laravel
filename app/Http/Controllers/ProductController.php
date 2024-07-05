@@ -62,7 +62,8 @@ class ProductController extends Controller
             'image' => 'nullable',
         ]);
         
-        if ($request->hasFile('image')) {            
+        if ($request->hasFile('image')) {   
+            dd('entrou no if do create da imagem');         
             $validated['image'] = $this->service->storeProductImage(
                 $request->file('image')
             );
@@ -72,21 +73,22 @@ class ProductController extends Controller
     }
 
     public function update(Request $request, $id){
+        
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:40',
             'description' => 'required|max:255',
             'price' => 'required',
             'image' => 'nullable',
         ]);
-        
+
         if ($validator->fails()) {
             return response()->json([
                 'status'=>false,
                 'message'=> 'Validation error!',
                 'erros'=> $validator->errors(),
             ], 422);
-        } 
-        
+        }       
+
         $validated = $request->validate([
             'name' => 'required|max:40',
             'description' => 'required|max:255',
@@ -94,6 +96,12 @@ class ProductController extends Controller
             'image' => 'nullable',
         ]);
 
+        if ($request->hasFile('image')) {
+            $validated['image'] = $this->service->storeProductImage(
+                $request->file('image')
+            );
+        }        
+        
         $productUpdated = $this->service->update($validated, $id);
 
         if ($productUpdated){
@@ -104,9 +112,7 @@ class ProductController extends Controller
                 'message'=> 'Could not found a product to update',
                 'id sent'=> $id,
             ], 404);
-        }
-
-        
+        }        
     }
 
     public function destroy($productId){
