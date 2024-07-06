@@ -21,9 +21,14 @@ class ProductService
 
     public function show($product){        
         $productFound = $this->repository->show($product);                
-        if($productFound->image){                        
-            $imageUrl = Storage::url($productFound->image);
-            $productFound->image = url($imageUrl);
+        if($productFound->image){
+            if ($productFound->image === "undefined"){
+                $imageUrl = Storage::url('images/default.png');
+                $productFound->image = url($imageUrl);
+            } else {
+                $imageUrl = Storage::url($productFound->image);
+               $productFound->image = url($imageUrl);
+            }
         }
         return $productFound;
     }
