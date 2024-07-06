@@ -44,6 +44,10 @@ class ProductRepository
     public function destroy($productId){
         $productFound = Product::find($productId);
         if($productFound){
+            if($productFound->image){
+                $filePath = 'public/' . $productFound->image;
+                $this->deleteImage($filePath);
+            }
             $productFound->delete();
             return $productFound;
         }else {
