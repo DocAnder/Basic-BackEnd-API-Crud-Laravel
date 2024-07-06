@@ -3,6 +3,7 @@
 namespace App\Http\Repositories;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProductRepository
 {
@@ -20,13 +21,24 @@ class ProductRepository
     }
 
     public function update($productId, $data){
-        $productFound = Product::find($productId);
+        $productFound = Product::find($productId);        
         if($productFound){
+            if($productFound->image && $data['image']){
+                $imageToDelete = $productFound->image;
+                $filePath = 'public/' . $imageToDelete;                
+                $this->deleteImage($filePath);
+            }
             $productFound->update($data);
             return $productFound;
         }else {
             return null;
         }
+    }
+
+    public function deleteImage($filePath){        
+        if(Storage::exists($filePath)){
+            Storage::delete($filePath);
+        }        
     }
 
     public function destroy($productId){
