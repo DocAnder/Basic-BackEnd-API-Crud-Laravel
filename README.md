@@ -19,11 +19,11 @@ Caso o banco não seja criado, execute `touch database/database.sqlite`
 
 ## Endpoints da API
 
-`GET /api/produtos` -> Retorna todos os produtos cadastrados;
-`GET /api/products/{productId}` -> Retorna um produto específico pelo ID e uma url para da imagem. Caso o produto não possua imagem, um padrão é enviada;
-`POST /api/products` -> Cria um novo produto;
-`POST /api/products/{productId}` -> Atualiza os dados de um produto, se existir, pelo ID;
-`DELETE /api/products/{productId}` -> Remove os dados de um produto, se existir, pelo ID;
+`GET /api/produtos` -> Retorna todos os produtos cadastrados.
+`GET /api/products/{productId}` -> Retorna um produto específico pelo ID e uma url para da imagem. Caso o produto não possua imagem, um padrão é enviada.
+`POST /api/products` -> Cria um novo produto.
+`POST /api/products/{productId}` -> Atualiza os dados de um produto, se existir, pelo ID.
+`DELETE /api/products/{productId}` -> Remove os dados de um produto, se existir, pelo ID.
 
 ## Executando a Aplicação
 
