@@ -61,9 +61,8 @@ class ProductController extends Controller
             'price' => 'required|max:255',
             'image' => 'nullable',
         ]);
-        
-        if ($request->hasFile('image')) {   
-            dd('entrou no if do create da imagem');         
+        //Retirado : && $request->hasFile('image') != null -> teste no front depois
+        if ($request->hasFile('image') ) {         
             $validated['image'] = $this->service->storeProductImage(
                 $request->file('image')
             );
